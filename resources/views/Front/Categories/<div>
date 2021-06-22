@@ -1,0 +1,26 @@
+<div>
+    <div class="sidbar">
+        <div class="item" data-id="01"></div>
+        <div class="item" data-id="02"></div>
+        <div class="item" data-id="03"></div>
+        <div class="item" data-id="04"></div>
+    </div>
+    <div class="content-items">
+        <div class="content-item active" id="01"></div>
+        <div class="content-item" id="02"></div>
+        <div class="content-item" id="03"></div>
+        <div class="content-item" id="04"></div>
+    </div>
+</div>
+
+$('.sidbar .item').on('hover', function(){
+    let id = $(this).attr('data-id');
+    $('.content-items .content-item').removeClass('active');
+    $("#"+id).addClass('active');
+})
+.content-items{
+    display: none;
+}
+.content-items.active{
+    display: block !important;
+}
