@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 //Users Route start here
 Route::prefix('user')->group(function () {
     Route::get('register', "App\Http\Controllers\Auth\RegisterController@create");
@@ -35,7 +39,9 @@ Route::group(['prefix' => 'user', 'middleware' => ['user']],function () {
 
 //home page rouets start
 Route::get('/', "App\Http\Controllers\Front\DashboardController@dashboard");
+
 Route::get('category/view', "App\Http\Controllers\Front\Category\CategoryController@categoryView");
+
 Route::get('category/detail', "App\Http\Controllers\Front\Category\CategoryController@categoryDetail");
 //home page rouets end
 
@@ -43,10 +49,9 @@ Route::get('category/detail', "App\Http\Controllers\Front\Category\CategoryContr
 Route::group(['prefix'=>'category','middleware' => ['user']], function (){
     Route::get('/list', "App\Http\Controllers\Front\Category\CategoryController@categoryList");
    
-
 });
 //categories routes end
-
+ 
 //Quicker product add start
 Route::group(['prefix'=>'product','middleware' => ['user']], function (){
 
@@ -80,6 +85,25 @@ Route::prefix('admin')->group(function (){
 Route::group(['prefix' => 'admin', 'middleware' => ['admin']],function () {
     Route::get('dashboard', "App\Http\Controllers\Admin\DashboardController@dashboard");
 });
+//category routes start here
+Route::resource('category', "App\Http\Controllers\Admin\Category\CategoryController");
+//category routes end here
+
+//subcategory routes start here
+Route::resource('subcategory', "App\Http\Controllers\Admin\SubCategory\SubCategoryController");
+//subcategory routes end here
+
+//brand routes start here
+Route::resource('brand', "App\Http\Controllers\Admin\Brand\BrandController");
+//brand routes end here
+
+//Model routes start here
+Route::resource('model', "App\Http\Controllers\Admin\Model\ModelController");
+//model routes end here
+
+//user routes start here
+Route::resource('user', "App\Http\Controllers\Admin\User\UserController");
+//user routes end here
 //Admin Dashboard routes end here
 
 
@@ -99,6 +123,4 @@ Route::group(['prefix' => 'vendor', 'middleware' => ['vendor']], function () {
 });
 //Vendor Dashboard routes end here
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

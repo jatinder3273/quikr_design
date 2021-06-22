@@ -16,21 +16,21 @@
                         <ul class="list-sidebar bg-white">
                             <li class="list-group-item" data-id="01"><a href="#" style="color:black;"><i class="fa fa-diamond"></i> <span class="nav-label"></i><b></b>Select a Category<b></b></span></a> </li>
 
-                            <li class="list-group-item" id="cars" data-id="02"><a href="{{ url('product/addcar') }}"><i class="fa fa-cars"></i> <span class="nav-label"><i class="fab fa-product-hunt"></i>Cars & Bikes</span></a> </li>
+                            <li class="list-group-item" id="cars" data-id="02"><a href="#"><i class="fa fa-cars"></i> <span class="nav-label"><i class="fab fa-product-hunt"></i>Cars & Bikes</span></a> </li>
 
-                            <li class="list-group-item" data-id="03"><a href="{{ url('product/addmobile') }}"><i class="fa fa-pie-chart"></i> <span class="nav-label"><i class="fas fa-couch"></i>Mobile & Tablets</span> </a></li>
+                            <li class="list-group-item" data-id="03"><a href="#"><i class="fa fa-pie-chart"></i> <span class="nav-label"><i class="fas fa-couch"></i>Mobile & Tablets</span> </a></li>
 
-                            <li class="list-group-item" data-id="04"><a href="{{ url('product/addelectronics') }}"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-refrigerator"></i>Electronics & Appliances</span></a> </li>
+                            <li class="list-group-item" data-id="04"><a href="#"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-refrigerator"></i>Electronics & Appliances</span></a> </li>
 
-                            <li class="list-group-item" data-id="05"> <a href="{{ url('product/addrealestate') }}"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fab fa-servicestack"></i>Real Estate</span></a> </li>
+                            <li class="list-group-item" data-id="05"> <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fab fa-servicestack"></i>Real Estate</span></a> </li>
 
-                            <li class="list-group-item" data-id="06"> <a href="{{ url('product/addhome') }}"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-user-md"></i>Home & Lifestyle</span></a> </li>
+                            <li class="list-group-item" data-id="06"> <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-user-md"></i>Home & Lifestyle</span></a> </li>
 
-                            <li class="list-group-item" data-id="07"> <a href="{{ url('product/addeducation') }}"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-home"></i>Education & Tranning</span></a> </li>
+                            <li class="list-group-item" data-id="07"> <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-home"></i>Education & Tranning</span></a> </li>
 
-                            <li class="list-group-item" data-id="08"> <a href="{{ url('product/addentertainment') }}"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-mobile"></i>Entertainment</span></a> </li>
+                            <li class="list-group-item" data-id="08"> <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-mobile"></i>Entertainment</span></a> </li>
 
-                            <li class="list-group-item" data-id="09" > <a href="{{ url('product/addpets') }}"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-gifts"></i>Pets & Petcare</span></a> </li>
+                            <li class="list-group-item" data-id="09" > <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-gifts"></i>Pets & Petcare</span></a> </li>
                         </ul>
                     </div>  
                 </div>
@@ -115,7 +115,7 @@
 // $("p").on('mouseenter',function(){
 //     alert("hello");
 // });
-$('li.list-group-item').on('mouseenter',function(){
+$('li.list-group-item').on('click',function(){
     let id = $(this).attr('data-id');
     $('div.content-item').removeClass('active');
     $("#"+id).addClass('active');

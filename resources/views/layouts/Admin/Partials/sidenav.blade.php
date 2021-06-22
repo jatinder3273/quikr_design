@@ -29,7 +29,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                 <li class="nav-item ">
-                    <a href="{{url('/dashboard')}}" class="nav-link active">
+                    <a href="{{url('admin/dashboard')}}" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -52,7 +52,7 @@
 
                 <li class="nav-item ">
                     <a href="{{url('vendor/list')}}" class="nav-link">
-                    <i class="fas fa-users" aria-hidden="true"></i>
+                    <i class="far fa-user-circle"></i>
                         <p>
                             Vendors
 
@@ -91,7 +91,25 @@
                     </a>
 
                 </li>
+                <li class="nav-item ">
+                    <a href="{{url('/brand')}}" class="nav-link ">
+                    <i class="fas fa-band-aid"></i>
+                        <p>
+                            Brands
+                        </p>
+                    </a>
 
+                </li>
+
+                 <li class="nav-item ">
+                    <a href="{{url('/model')}}" class="nav-link ">
+                    <i class="fas fa-hotel"></i>
+                        <p>
+                            Models
+                        </p>
+                    </a>
+
+                </li>
                 
                 <li class="nav-item ">
                     <a href="{{url('admin/logout')}}" class="nav-link ">

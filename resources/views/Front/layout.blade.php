@@ -193,7 +193,7 @@ h1,h2,h3,h4,h5,h6,p,ul,ol{ margin:0px; padding:0px;}
 .content-item.active{
     display:block !important;
 }
-.sidebar li a:hover + .show{
+.sidebar li a:hover {
     background-color: green;
     display:block;
     }

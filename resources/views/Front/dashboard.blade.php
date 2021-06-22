@@ -16,7 +16,7 @@
 
                     <li class="list-group-item"><a href="{{ url('category/view') }}"><i class="fa fa-pie-chart"></i> <span class="nav-label"><i class="fas fa-couch"></i>Furniture & Decor</span> </a></li>
                         
-                    <li class="list-group-item"><a href="{{ url('category/view') }}"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-refrigerator"></i>Application,Ac</span></a> </li>
+                    <li class="list-group-item"><a href="{{ url('category/view') }}"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-couch"></i>Application,Ac</span></a> </li>
 
 
                     <li class="list-group-item"> <a href="{{ url('category/view') }}"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-car"></i>Cars</span></a> </li>
@@ -30,9 +30,9 @@
                     <li class="list-group-item"> <a href="{{ url('category/view') }}"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-gifts"></i>Gift Cards</span></a> </li>
 
                                 
-                    <li class="list-group-item"> <a href="{{ url('category/view') }}"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fal fa-credit-card-blank"></i>Personal Loan</span></a> </li>
+                    <li class="list-group-item"> <a href="{{ url('category/view') }}"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-book-open"></i>Personal Loan</span></a> </li>
                                 
-                    <li class="list-group-item"> <a href="{{ url('category/view') }}"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-tennis-ball"></i>Sports,Hobbies,Fashion</span></a> </li>
+                    <li class="list-group-item"> <a href="{{ url('category/view') }}"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-dumpster-fire"></i>Sports,Hobbies,Fashion</span></a> </li>
                                 
                     <li class="list-group-item"> <a href="{{ url('category/view') }}"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-child"></i>Kids & Toys</span></a> </li>
                                 
@@ -42,7 +42,7 @@
                                     
                     <li class="list-group-item"> <a href="{{ url('category/view') }}"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-dog"></i>Pets & Pet Care</span></a> </li>
                         
-                    <li class="list-group-item"> <a href="{{ url('category/view') }}"><i class="fa fa-files-o"></i> <span class="nav-label">B2B Suppliers</span></a> </li>
+                    <li class="list-group-item"> <a href="{{ url('category/view') }}"><i class="fas fa-user"></i> <span class="nav-label">B2B Suppliers</span></a> </li>
                                         
                     <li class="list-group-item"><a href="{{ url('category/view') }}"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-tv"></i>Entertainment</span></a> </li>
                                         

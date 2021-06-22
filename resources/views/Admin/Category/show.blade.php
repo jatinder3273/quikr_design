@@ -1,4 +1,4 @@
-@extends('Front/layout')
+@extends('layouts.Admin.master')
 @section('content')
 
 @if(session('message'))
@@ -7,51 +7,47 @@
     <h5><i class="icon fas fa-check">{{session('message')}}</i></h5>
 </div>
 @endif
-
-
-<div class="carousel-inner">
-
-    <div class="item ">
-        <a href="">
-            <header>
-                <img class="slider_img"
-                    src="{{url('https://www.quickerads.com/wp-content/uploads/2018/07/quicker-1.jpeg')}}" alt="Chania"
-                    style="object-fit: cover; opacity: 0.4;">
-                <section class='hero-header-text'>
-                    <div class="carousel-caption slider-text ">
-                        <h1>Over 95,00,000 Classified Ads Listing</h1> &nbsp;&nbsp;
-                        <p>Search from largest classifieds & Post unlimited classifieds for free!</p>
-                        <!-- <form action="post/search" method="post">
-                            <input type="text" style="width:70%; height:60px;">
-                            <button class="btn btn-success"
-                                style="margin-top:-5px; margin-left:-5px; width:70px; height:58px;background:orange;"><i
-                                    class="fa fa-search" aria-hidden="true"></i></button>
-                        </form> -->
-                    </div>
-                </section>
-            <header>
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Categories</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                        <li class="breadcrumb-item active">Categories</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
     </div>
-    </a>
-</div>
-<div class="container-fluid my-5">
+    <div class="custom-product">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="row">
+                    <div class="col-sm-1 my-3">
 
-    <div class="row">
-        @foreach($data as $product)
-        <div class="col-md-3 my-3">
+                        
+                    </div>
+                    <div class="col-sm-2 my-3">
 
-            <div class="card" style="width: 18rem; length:100px; border:2px solid grey">
-                <h5 class="card-title">{{$product->title}}</h5>
-                <img src="{{url('users')}}/{{$product->image_name}}" height=50%>
-                <div class="card-body">
+                        <h4>Category</h4>
+                        <p>{{$data->name}}</p>
+                    </div>
+                    <div class="col-sm-2 my-3">
+                        <h4>Subcategory</h4>
+                        @foreach($sub as $subs)
+                        <p>{{$subs->subcategory_name}}
+                        <p>
+                            @endforeach
+                            <br><br>
 
-                    <p class="card-text"><b>Rs.</b>{{$product->price}}</p>
-                    <p class="card-text">{{$product->Description}}</p>
-                    <a href="{{url('post/detail')}}/{{$product->id}}" class="btn btn-primary"
-                        style="background:orange">Buy Now</a>
+                    </div>
                 </div>
             </div>
         </div>
-        @endforeach
     </div>
 </div>
 
@@ -68,6 +64,7 @@ $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
 <script src="{{url('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="../../plugins/select2/js/select2.full.min.js"></script>
 <!-- ChartJS -->
 <script src="{{url('plugins/chart.js/Chart.min.js')}}"></script>
 <!-- Sparkline -->
@@ -92,4 +89,25 @@ $.widget.bridge('uibutton', $.ui.button)
 <script src="{{url('dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{url('dist/js/pages/dashboard.js')}}"></script>
+<script>
+$(function() {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#file').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#profile-img").change(function() {
+        readURL(this);
+    });
+
+})
+</script>
 @endsection
