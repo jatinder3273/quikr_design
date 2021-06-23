@@ -32,7 +32,7 @@ class LoginController extends Controller
             return redirect('category/list')->with(['message' => 'success', 'message' => 'you are login successfully']);
         }
         else {
-            return redirect('user/login')->with(['message'=>'error','message'=>'yo are not login successfully']);
+            return redirect('user/login')->with(['message'=>'error','message'=>'Wrong credentials']);
         }
 
     }

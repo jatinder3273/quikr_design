@@ -48,6 +48,7 @@ Route::get('category/detail', "App\Http\Controllers\Front\Category\CategoryContr
 //categories routes start
 Route::group(['prefix'=>'category','middleware' => ['user']], function (){
     Route::get('/list', "App\Http\Controllers\Front\Category\CategoryController@categoryList");
+    Route::get('subcategory/list/{id}', "App\Http\Controllers\Front\Category\CategoryController@subcategoryList");
    
 });
 //categories routes end

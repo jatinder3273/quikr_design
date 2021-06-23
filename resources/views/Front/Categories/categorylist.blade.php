@@ -14,23 +14,11 @@
                 <div class = col-md-4>
                     <div class="sidebar left">
                         <ul class="list-sidebar bg-white">
-                            <li class="list-group-item" data-id="01"><a href="#" style="color:black;"><i class="fa fa-diamond"></i> <span class="nav-label"></i><b></b>Select a Category<b></b></span></a> </li>
+                           <li class="list-group-item" data-id ="01"><a href="#"><i class="fa fa-cars"></i> <span class="nav-label"><i class="fab fa-product-hunt"></i>Select Category</span></a> </li>
 
-                            <li class="list-group-item" id="cars" data-id="02"><a href="#"><i class="fa fa-cars"></i> <span class="nav-label"><i class="fab fa-product-hunt"></i>Cars & Bikes</span></a> </li>
-
-                            <li class="list-group-item" data-id="03"><a href="#"><i class="fa fa-pie-chart"></i> <span class="nav-label"><i class="fas fa-couch"></i>Mobile & Tablets</span> </a></li>
-
-                            <li class="list-group-item" data-id="04"><a href="#"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-refrigerator"></i>Electronics & Appliances</span></a> </li>
-
-                            <li class="list-group-item" data-id="05"> <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fab fa-servicestack"></i>Real Estate</span></a> </li>
-
-                            <li class="list-group-item" data-id="06"> <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-user-md"></i>Home & Lifestyle</span></a> </li>
-
-                            <li class="list-group-item" data-id="07"> <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-home"></i>Education & Tranning</span></a> </li>
-
-                            <li class="list-group-item" data-id="08"> <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-mobile"></i>Entertainment</span></a> </li>
-
-                            <li class="list-group-item" data-id="09" > <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label"><i class="fas fa-gifts"></i>Pets & Petcare</span></a> </li>
+                            @foreach($category as $data)
+                            <li class="list-group-item" data-id ="{{ $data->id }}"><a  onclick ="showsubcategory('{{ $data->id}}')"><i class="fa fa-cars"></i> <span class="nav-label"><i class="fab fa-product-hunt"></i>{{$data->name}}</span></a> </li>
+                            @endforeach
                         </ul>
                     </div>  
                 </div>
@@ -42,48 +30,24 @@
                             <h4>Select A Categories</h4>
                            <center><img style="margin-top:10px; margin-left:20px;" src="https://teja9.kuikr.com/images/newlayout/blue-arrow.png" width="401px" height="142px"></center>
                         </div>
-                        <div class="content-item" id="02">
+                       
+                        @foreach($category as $data)
+                       
+                        <div class="content-item" id ="{{ $data->id }}">
                             <h1>Post Free Ads</h1>
                             <h4>Select A Categories</h4>
                             <ul class="list-sidebar bg-white">
-                                <li class="list-group-item"><a href="{{ url('product/addcar') }}">Bikes & Scooter</a></li>
-                                <li class="list-group-item"><a href="{{ url('product/addcar') }}">Bikes & Scooter</a></li>
-                                <li class="list-group-item"><a href="{{ url('product/addcar') }}">Bikes & Scooter</a></li>
-                                <li class="list-group-item"><a href="{{ url('product/addcar') }}">Bikes & Scooter</a></li>
+                               
                             </ul>
                         </div>
-                        <div class="content-item" id="03">
-                            <h1>Post Free Ads</h1>
-                            <h4>Select A Categories</h4>
-                            <ul class="list-sidebar bg-white">
-                                <li class="list-group-item"><a href="{{ url('product/addmobile') }}">Mobiles</a></li>
-                                <li class="list-group-item"><a href="{{ url('product/addmobile') }}">Teblets</a></li>
-                                <li class="list-group-item"><a href="{{ url('product/addmobile') }}">laptop</a></li>
-                                <li class="list-group-item"><a href="#">Apple laptop</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="content-item" id="04">
-                            <h1>Post Free Ads</h1>
-                            <h4>Select A Categories</h4>
-                            <ul class="list-sidebar bg-white">
-                                <li class="list-group-item"><a href="{{ url('product/addelectronics') }}">Tv</a></li>
-                                <li class="list-group-item"><a href="{{ url('product/addelectronics') }}">LED</a></li>
-                                <li class="list-group-item"><a href="{{ url('product/addelectronics') }}">Refrigretor</a></li>
-                                <li class="list-group-item"><a href="{{ url('product/addelectronics') }}">Washing Machine</a></li>
-                            </ul>
-                        </div>
-                        
+                       @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-
 @endsection
-
 @section('script')
 <!-- jQuery -->
 <!-- jQuery -->
@@ -117,9 +81,29 @@
 // });
 $('li.list-group-item').on('click',function(){
     let id = $(this).attr('data-id');
+    //console.log(id);
     $('div.content-item').removeClass('active');
     $("#"+id).addClass('active');
 });
 
+function showsubcategory(category_id)
+{
+    //console.log(category_id);
+    $.ajax({
+    
+      data:{id:category_id},
+      type:'GET',
+      url:'{{ url('category/subcategory/list/2')}}',//dynamic url tommorrow
+      success:function(response)
+      {
+        console.log(response);
+        $.each(response.sub,function(index,subcategory)
+        {
+        console.log(subcategory.subcategory_name);
+        $('.list-sidebar').append('<li class="list-group-item"><a href="#">'+subcategory.subcategory_name+'</a></li>')
+        });
+      }
+    });
+}
 </script>
 @endsection
