@@ -12,27 +12,31 @@
         <div class="col-md-8">
             <div class="container my-3">
                 <div class="card p-3" style="border:2px solid rgb(223, 212, 212)">
-                    <form action="" meyhod="" style="width:50%">
+                    <form action="{{ url('product/addcar') }}" method="post" style="width:50%">
+                        @csrf
+                        <div class="form-group">
+                           
+                            <input type="hidden" class="form-control" name="cat_id" value="{{$cat_id->id}}">
+                        </div>
+                         <div class="form-group">
+                            
+                        <input type="hidden" class="form-control" name="subcat_id" value={{$subcat_id->id}}>
+                        </div>
+
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Your Brand</label>
-                            <select class="form-control" id="exampleFormControlSelect1" name="brand" placeholder="your brand">
-                            <option selected>Your Brand</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                             </select>
+                            <select class="form-control" id="brand_id" name="brand" placeholder="your brand">
+                                <option selected>Your Brand</option>
+                                @foreach($brand as $data)
+                                <option id ="{{ $data->brand_id }}" value="{{ $data->brand_id }}" onclick="showmodel()">{{$data->brand_name}}</option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="form-group">
 
-                            <label for="exampleFormControlSelect1">Your Model</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                            <option selected>Your Model</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Model</label>
+                            <select class="form-control" id="model">
+                                <option selected>Your Model</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -117,47 +121,47 @@
 
 @section('script')
 <!-- jQuery -->
+<!-- jQuery -->
 <script src="{{url('plugins/jquery/jquery.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{{url('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-$.widget.bridge('uibutton', $.ui.button)
-</script>
-<!-- Bootstrap 4 -->
+
 <script src="{{url('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- ChartJS -->
-<script src="{{url('plugins/chart.js/Chart.min.js')}}"></script>
-<!-- Sparkline -->
-<script src="{{url('plugins/sparklines/sparkline.js')}}"></script>
-<!-- JQVMap -->
-<script src="{{url('plugins/jqvmap/jquery.vmap.min.js')}}"></script>
-<script src="{{url('plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
-<!-- jQuery Knob Chart -->
-<script src="{{url('plugins/jquery-knob/jquery.knob.min.js')}}"></script>
-<!-- daterangepicker -->
-<script src="{{url('plugins/moment/moment.min.js')}}"></script>
-<script src="{{url('plugins/daterangepicker/daterangepicker.js')}}"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="{{url('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
-<!-- Summernote -->
-<script src="{{url('plugins/summernote/summernote-bs4.min.js')}}"></script>
+<script src="{{ url('../../plugins/select2/js/select2.full.min.js') }}"></script>
+
 <!-- overlayScrollbars -->
 <script src="{{url('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{url('dist/js/adminlte.js')}}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{url('dist/js/demo.js')}}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{url('dist/js/pages/dashboard.js')}}"></script>
+
 <script>
-    $(document).ready(function(){
-   $('button').click(function(){
-       $('.sidebar').toggleClass('fliph');
-   });
-  
-  
-   
+
+$(document).ready(function ()
+{
+$('#brand_id').on('change',function(e) 
+{
+    //alert("hello"); 
+   var brand_id = e.target.value;
+   console.log(brand_id);
+    $.ajax({
+    
+      data:{id:brand_id},
+      type:'GET',
+      url:'http://localhost:8000/subcategory/showmodel',
+      //console.log(url);
+      success:function(response)
+      {
+        console.log(response);
+        $('.model').html('');
+        $.each(response.model,function(index,model)
+        {
+        
+        //console.log(response);
+        $('#model').append('<option value="'+model.model_id+'">'+model.model_name+'</option>');
+        });
+      }
+    });
+});
 });
 </script>
 @endsection

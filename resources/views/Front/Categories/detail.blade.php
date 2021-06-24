@@ -227,6 +227,6 @@ $('.btn-success').click()
 
 function({
     $('#cardchat').show();
-}).
+});
 </script>
 @endsection

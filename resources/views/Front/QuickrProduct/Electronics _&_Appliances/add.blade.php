@@ -23,14 +23,13 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <select class="form-control" id="exampleFormControlSelect1" name="brand" placeholder="your brand">
-                                        <option selected>Your Brand</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
+                                    <label for="exampleFormControlSelect1">Your Brand</label>
+                                        <select class="form-control" id="exampleFormControlSelect1" name="brand" placeholder="your brand">
+                                            <option selected>Your Brand</option>
+                                            @foreach($brand as $data)
+                                            <option value="{{ $data->brand_id }}">{{$data->brand_name}}</option>
+                                            @endforeach
+                                        </select>
                                 </div>
                             </div>
                             <div class="col">

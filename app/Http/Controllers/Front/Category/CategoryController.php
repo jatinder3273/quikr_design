@@ -18,18 +18,20 @@ class CategoryController extends Controller
         return view('Front.Categories.categorylist',compact('category'));
     }
 
-    public function subcategoryList($id)
+    public function subcategoryList(Request $request)
     {
-        $category = category::find($id);
+        $category = $request->all();
+        // echo "<pre>";
+        // print_r($category);
+        // die;
         $category_id = $category['id'];
         $sub = category::join('subcategory', 'category.id', '=', 'subcategory.category_id')
-        ->select('subcategory.name as subcategory_name', 'category.name as category_name')
+        ->select('subcategory.name as subcategory_name', 'subcategory.id as subcategory_id','category.name as category_name','category.id as category_id')
         ->where('category.id', '=', $category_id)
             ->get();
+        
         //return view('Front.Categories.categorylist', compact('sub'));
-        return response()->json([
-            'sub' => $sub
-        ]);
+        return response()->json(['sub' => $sub]);
     }
 
     public function categoryView()

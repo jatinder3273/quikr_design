@@ -40,7 +40,6 @@ class SubCategoryController extends Controller
         $category = category::all();
         return view('Admin.SubCategory.add', compact('category'));
     }
-
     /**
      * Store a newly created resource in storage.
      *

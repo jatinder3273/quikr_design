@@ -10,9 +10,7 @@ class SubCategory extends Model
     use HasFactory;
     protected $table = 'subcategory';
     protected $fillable =['name','category_id',];
-
     protected $appends = ['category_name'];
-
     public function category()
     {
         return $this->belongsTo(category::class);

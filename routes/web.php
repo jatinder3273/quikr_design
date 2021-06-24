@@ -48,28 +48,24 @@ Route::get('category/detail', "App\Http\Controllers\Front\Category\CategoryContr
 //categories routes start
 Route::group(['prefix'=>'category','middleware' => ['user']], function (){
     Route::get('/list', "App\Http\Controllers\Front\Category\CategoryController@categoryList");
-    Route::get('subcategory/list/{id}', "App\Http\Controllers\Front\Category\CategoryController@subcategoryList");
+    Route::get('subcategory/list', "App\Http\Controllers\Front\Category\CategoryController@subcategoryList");
    
 });
 //categories routes end
  
 //Quicker product add start
-Route::group(['prefix'=>'product','middleware' => ['user']], function (){
+Route::group(['prefix'=>'subcategory','middleware' => ['user']], function (){
 
-    Route::get('addcar', "App\Http\Controllers\Front\Product\ProductController@addCar");
-    Route::get('addmobile', "App\Http\Controllers\Front\Product\ProductController@addMobile");
-    Route::get('addelectronics', "App\Http\Controllers\Front\Product\ProductController@addElectronics");
-    Route::get('addrealestate', "App\Http\Controllers\Front\Product\ProductController@addRealestate");
-    Route::get('addhome', "App\Http\Controllers\Front\Product\ProductController@addHome");
-    Route::get('addjobs', "App\Http\Controllers\Front\Product\ProductController@addJobs");
-    Route::get('addservices', "App\Http\Controllers\Front\Product\ProductController@addServices");
-    Route::get('addeducation', "App\Http\Controllers\Front\Product\ProductController@addEducation");
-    Route::get('addentertainment', "App\Http\Controllers\Front\Product\ProductController@addEntertainment");
-    Route::get('addpets', "App\Http\Controllers\Front\Product\ProductController@addPets");
-    Route::get('addcommunity', "App\Http\Controllers\Front\Product\ProductController@addCommunity");
-    Route::get('addevents', "App\Http\Controllers\Front\Product\ProductController@addEvents");
-    Route::get('addmatrimonial', "App\Http\Controllers\Front\Product\ProductController@addMatrimonial");
+    Route::get('{category_id}/{sub_id}/add', "App\Http\Controllers\Front\Product\ProductController@addView");
+    Route::get('showmodel', "App\Http\Controllers\Front\Product\ProductController@showmodel");
 });
+
+Route::group(['prefix' => 'product', 'middleware' => ['user']], function () {
+
+    Route::post('addcar', "App\Http\Controllers\Front\Product\CarController@carStore");
+
+});
+
 //Quicker producCategory\Category
 
 

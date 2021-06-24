@@ -16,6 +16,8 @@ class CreatePCarsImagesTable extends Migration
         Schema::create('p_cars_images', function (Blueprint $table) {
             $table->id();
             $table->foreignId('cars_id')->constrained('p_cars')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('file');
+            $table->string('cover_image')->nullable();
             $table->timestamps();
         });
     }

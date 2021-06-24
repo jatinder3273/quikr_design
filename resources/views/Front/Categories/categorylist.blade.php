@@ -14,7 +14,7 @@
                 <div class = col-md-4>
                     <div class="sidebar left">
                         <ul class="list-sidebar bg-white">
-                           <li class="list-group-item" data-id ="01"><a href="#"><i class="fa fa-cars"></i> <span class="nav-label"><i class="fab fa-product-hunt"></i>Select Category</span></a> </li>
+                            <li class="list-group-item" data-id ="01"><a ><i class="fa fa-cars"></i> <span class="nav-label"><i class="fab fa-product-hunt"></i>Select Category</span></a> </li>
 
                             @foreach($category as $data)
                             <li class="list-group-item" data-id ="{{ $data->id }}"><a  onclick ="showsubcategory('{{ $data->id}}')"><i class="fa fa-cars"></i> <span class="nav-label"><i class="fab fa-product-hunt"></i>{{$data->name}}</span></a> </li>
@@ -30,17 +30,16 @@
                             <h4>Select A Categories</h4>
                            <center><img style="margin-top:10px; margin-left:20px;" src="https://teja9.kuikr.com/images/newlayout/blue-arrow.png" width="401px" height="142px"></center>
                         </div>
-                       
+
                         @foreach($category as $data)
-                       
-                        <div class="content-item" id ="{{ $data->id }}">
+                       <div class="content-item" id ="{{ $data->id }}">
                             <h1>Post Free Ads</h1>
                             <h4>Select A Categories</h4>
-                            <ul class="list-sidebar bg-white">
-                               
+                            <ul class="list-sidebars bg-white" id="subcategory">
                             </ul>
                         </div>
-                       @endforeach
+                        @endforeach
+                        
                     </div>
                 </div>
             </div>
@@ -81,9 +80,11 @@
 // });
 $('li.list-group-item').on('click',function(){
     let id = $(this).attr('data-id');
-    //console.log(id);
+    // console.log(id);
     $('div.content-item').removeClass('active');
     $("#"+id).addClass('active');
+    
+
 });
 
 function showsubcategory(category_id)
@@ -93,14 +94,17 @@ function showsubcategory(category_id)
     
       data:{id:category_id},
       type:'GET',
-      url:'{{ url('category/subcategory/list/2')}}',//dynamic url tommorrow
+      url:'{{ url('category/subcategory/list')}}',
+      //console.log(url);
       success:function(response)
       {
         console.log(response);
+        $('.list-sidebars').html('');
         $.each(response.sub,function(index,subcategory)
         {
-        console.log(subcategory.subcategory_name);
-        $('.list-sidebar').append('<li class="list-group-item"><a href="#">'+subcategory.subcategory_name+'</a></li>')
+        var urls ='http://localhost:8000/subcategory/' + subcategory.category_id + '/' + subcategory.subcategory_id + '/add';
+        //console.log(response);
+        $('.list-sidebars').append('<li class="list-group-item"><a href= '+ urls+ '>'+subcategory.subcategory_name+'</a></li>')
         });
       }
     });
