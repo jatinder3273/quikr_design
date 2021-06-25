@@ -12,7 +12,8 @@
         <div class="col-md-8">
             <div class="container my-3">
                 <div class="card p-3" style="border:2px solid rgb(223, 212, 212)">
-                    <form>
+                    <form action="{{ url('product/addmobile') }}" method="post" style="width:50%" enctype="multipart/form-data">
+                        @csrf
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
@@ -24,7 +25,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">Your Brand</label>
-                                        <select class="form-control" id="exampleFormControlSelect1" name="brand" placeholder="your brand">
+                                        <select class="form-control" id="brand_id" name="brand" placeholder="your brand">
                                             <option selected>Your Brand</option>
                                             @foreach($brand as $data)
                                             <option value="{{ $data->brand_id }}">{{$data->brand_name}}</option>
@@ -35,12 +36,8 @@
                             <div class="col">
                                 <div class="form-group">
 
-                                    <select class="form-control" id="exampleFormControlSelect1">
+                                    <select class="form-control" id="model" name="model">
                                     <option selected>Your Model</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
                                     </select>
                                 </div>
                             </div>
@@ -50,20 +47,19 @@
                             <div class="col">
                                 <div class="form-group">
                           
-                                    <select class="form-control" id="exampleFormControlSelect1" name="brand" placeholder="your brand">
+                                    <select class="form-control" id="exampleFormControlSelect1" name="year_of_registration" placeholder="your brand">
                                         <option selected>Year Of Purchase</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                        @for($i=2000;$i<=2021;$i++)
+                                        <option value="{{$i}}">{{$i}}</option>
+                                      
+                                        @endfor
                                     </select>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <select class="form-control" id="exampleFormControlSelect1">
-                                        <option selected>Pysical Condition</option>
+                                    <select class="form-control" id="exampleFormControlSelect1" name="physical_condition">
+                                        <option selected>Physical Condition</option>
                                         <option>Excellent</option>
                                         <option>Good</option>
                                         <option>Fair</option>
@@ -186,13 +182,33 @@ $.widget.bridge('uibutton', $.ui.button)
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{url('dist/js/pages/dashboard.js')}}"></script>
 <script>
-    $(document).ready(function(){
-   $('button').click(function(){
-       $('.sidebar').toggleClass('fliph');
-   });
-  
-  
-   
+ $(document).ready(function ()
+{
+$('#brand_id').on('change',function(e) 
+{
+    //alert("hello"); 
+   var brand_id = e.target.value;
+   //console.log(brand_id);
+    $.ajax
+    ({
+    
+      data:{id:brand_id},
+      type:'GET',
+      url:'http://localhost:8000/subcategory/showmodel',
+      //console.log(url);
+      success:function(response)
+      {
+        //console.log(response);
+        
+        $.each(response.model,function(index,model)
+        {
+        
+        //console.log(response);
+        $('#model').append('<option value="'+model.model_id+'">'+model.model_name+'</option>');
+        });
+      }
+    });
+});
 });
 </script>
 @endsection

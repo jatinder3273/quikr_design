@@ -63,6 +63,7 @@ Route::group(['prefix'=>'subcategory','middleware' => ['user']], function (){
 Route::group(['prefix' => 'product', 'middleware' => ['user']], function () {
 
     Route::post('addcar', "App\Http\Controllers\Front\Product\CarController@carStore");
+    Route::post('addmobile', "App\Http\Controllers\Front\Product\MobilController@mobileStore");
 
 });
 

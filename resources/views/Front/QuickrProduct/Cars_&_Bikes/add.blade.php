@@ -12,7 +12,7 @@
         <div class="col-md-8">
             <div class="container my-3">
                 <div class="card p-3" style="border:2px solid rgb(223, 212, 212)">
-                    <form action="{{ url('product/addcar') }}" method="post" style="width:50%">
+                    <form action="{{ url('product/addcar') }}" method="post" style="width:50%" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                            
@@ -25,7 +25,7 @@
 
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Your Brand</label>
-                            <select class="form-control" id="brand_id" name="brand" placeholder="your brand">
+                            <select class="form-control" id="brand_id" name="brand_id" placeholder="your brand">
                                 <option selected>Your Brand</option>
                                 @foreach($brand as $data)
                                 <option id ="{{ $data->brand_id }}" value="{{ $data->brand_id }}" onclick="showmodel()">{{$data->brand_name}}</option>
@@ -35,34 +35,37 @@
 
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Model</label>
-                            <select class="form-control" id="model">
+                            <select class="form-control" id="model" name="model_id">
                                 <option selected>Your Model</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect2">Year Of Registartion</label>
-                            <input type="text" class="form-control" name="year" placeholder="Year Of Registration">
-                        </div>
-
+                           <div class="form-group">
+                                <label for="exampleFormControlSelect1">Year Of Purchase</label>
+                                    <select class="form-control" id="exampleFormControlSelect1" name="year_of_registration" placeholder="your brand">
+                                        <option selected>Year Of Purchase</option>
+                                        @for($i=2000;$i<=2021;$i++)
+                                        <option value="{{$i}}">{{$i}}</option>
+                                      
+                                        @endfor
+                                    </select>
+                                </div>
                         <div class="form-group">
                             <label for="exampleFormControlSelect2">Kms Driven</label>
-                            <input type="text" class="form-control" name="year" placeholder="Year Of Registration">
+                            <input type="text" class="form-control" name="kms_driven" placeholder="Year Of Registration">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleFormControlSelect1">City</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                            <option selected>Your City</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            </select>
+                            <label for="exampleFormControlSelect1">image</label>
+                            <input type="file" class="form-control" name="file" id="file">
                         </div>
 
                         <div class="form-group">
                             <label for="exampleFormControlSelect2">Selling Price</label>
-                            <input type="text" class="form-control" name="year" placeholder="Year Of Registration">
+                            <input type="text" class="form-control" name="price" placeholder="Year Of Registration">
+                        </div>
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect2">Description</label>
+                            <input type="text" class="form-control" name="description" placeholder="Description">
                         </div>
                        <button type="submit" class="btn-primary">Submit</button>
                     </form>
@@ -143,7 +146,9 @@ $('#brand_id').on('change',function(e)
     //alert("hello"); 
    var brand_id = e.target.value;
    console.log(brand_id);
-    $.ajax({
+    $.ajax
+    ({
+
     
       data:{id:brand_id},
       type:'GET',
